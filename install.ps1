@@ -6,6 +6,10 @@ Copy-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-m
 
 if ( (Get-ChildItem -Path Env:Path).Value -split ';'  -contains  'c:\apache-maven\bin' -eq $false)
 {
+Write-Host "Adding 'c:\apache-maven\bin' to the path"
 setx Path ('c:\apache-maven\bin;' + [Environment]::GetEnvironmentVariable('Path'))
 }
-
+else 
+{
+Write-Host "'c:\apache-maven\bin' is already in the path"
+}
