@@ -2,7 +2,9 @@ Invoke-WebRequest https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-m
 
 Expand-Archive -Path $env:TEMP\apache-maven.zip -DestinationPath $env:TEMP\apache-maven -Force
 
-Copy-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-maven -Force
+mkdir c:\apache-maven
+$Folder = (Get-ChildItem $env:TEMP\apache-maven | Select-Object -Last 1).Name
+Copy-Item -Path $env:TEMP\apache-maven\$Folder\* -Destination c:\apache-maven\ -Force -Recurse
 
 if ( [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'  -contains  'c:\apache-maven\bin' -eq $false) {
 Write-Host "Adding 'c:\apache-maven\bin' to the path"
