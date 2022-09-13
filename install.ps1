@@ -2,7 +2,7 @@ Invoke-WebRequest https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-m
 
 Expand-Archive -Path $env:TEMP\apache-maven.zip -DestinationPath $env:TEMP\apache-maven
 
-Move-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-maven -Force
+Copy-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-maven -Force
 
 if ( (Get-ChildItem -Path Env:Path).Value -split ';'  -contains  'c:\apache-maven\bin' -eq $false)
 {
