@@ -4,7 +4,7 @@ Expand-Archive -Path $env:TEMP\apache-maven.zip -DestinationPath $env:TEMP\apach
 
 Copy-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-maven -Force
 
-if ( (Get-ChildItem -Path Env:Path).Value -split ';'  -contains  'c:\apache-maven\bin' -eq $false) {
+if ( [Environment]::GetEnvironmentVariable('Path', 'User') -split ';'  -contains  'c:\apache-maven\bin' -eq $false) {
 Write-Host "Adding 'c:\apache-maven\bin' to the path"
 setx Path ('c:\apache-maven\bin;' + [Environment]::GetEnvironmentVariable('Path', 'User'))
 } else {
