@@ -2,7 +2,11 @@ Invoke-WebRequest https://dlcdn.apache.org/maven/maven-3/3.8.6/binaries/apache-m
 
 Expand-Archive -Path $env:TEMP\apache-maven.zip -DestinationPath $env:TEMP\apache-maven -Force
 
-mkdir c:\apache-maven
+$MavenPath = "c:\apache-maven"
+If(!(test-path -PathType container $MavenPath)) {
+      New-Item -ItemType Directory -Path $MavenPath
+}
+
 $Folder = (Get-ChildItem $env:TEMP\apache-maven | Select-Object -Last 1).Name
 Copy-Item -Path $env:TEMP\apache-maven\$Folder\* -Destination c:\apache-maven\ -Force -Recurse
 
