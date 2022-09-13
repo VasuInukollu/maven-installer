@@ -6,6 +6,6 @@ Copy-Item -Path $env:TEMP\apache-maven\apache-maven-*\* -Destination c:\apache-m
 
 if ( (Get-ChildItem -Path Env:Path).Value -split ';'  -contains  'c:\apache-maven\bin' -eq $false)
 {
-#setx Path ('c:\apache-maven\bin;' + [Environment]::GetEnvironmentVariable('Path'))
+setx Path ('c:\apache-maven\bin;' + [Environment]::GetEnvironmentVariable('Path'))
 }
 
